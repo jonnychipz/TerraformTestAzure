@@ -1,2 +1,3 @@
-# TerraformTestAzure
-Test Repo for connecting to Terraform for Azure testing
+# Terraform Test Azure
+
+Test Repo to understand how to deploy infrastructure into Azure using Hashicorp Terraform, GitHub and Azure DevOps (ADO)
