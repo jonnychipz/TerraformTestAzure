@@ -20,7 +20,7 @@ data "azurerm_client_config" "current" {}
 
 # Create our Resource Group - Jonnychipz-RG
 resource "azurerm_resource_group" "rg" {
-  name     = "jonnychipz-rg"
+  name     = "jonnychipz-app01"
   location = "UK South"
 }
 
