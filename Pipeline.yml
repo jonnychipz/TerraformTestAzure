@@ -1,11 +1,11 @@
 stages :
-  - stage: validate
+  - stage: plan
     jobs:
     - job: validate
       continueOnError: false
       steps:
       - task: TerraformInstaller@0
-        displayName: 'install'
+        displayName: 'installtf'
         inputs:
           terraformVersion: '0.12.3'
       - task: TerraformTaskV1@0
@@ -13,28 +13,24 @@ stages :
         inputs:
           provider: 'azurerm'
           command: 'init'
-          backendServiceArm: 'tamopstf'
-          backendAzureRmResourceGroupName: 'tamopstf'
-          backendAzureRmStorageAccountName: 'tamopstf'
-          backendAzureRmContainerName: 'tfstatedevops'
-          backendAzureRmKey: 'terraform.tfstate'
       - task: TerraformTaskV1@0
-        displayName: 'validate'
+        displayName: 'plan'
         inputs:
           provider: 'azurerm'
-          command: 'validate'
+          command: 'plan'
+
   - stage: deploy
     jobs:
-    - deployment: deploy_terraform
+    - deployment: deploytf
       continueOnError: false
-      environment: 'dev'
+      environment: 'master'
       strategy:
        runOnce:
          deploy:
             steps:
               - checkout: self
               - task: TerraformInstaller@0
-                displayName: 'install'
+                displayName: 'installtf'
                 inputs:
                   terraformVersion: '0.12.3'
               - task: TerraformTaskV1@0
@@ -42,20 +38,9 @@ stages :
                 inputs:
                   provider: 'azurerm'
                   command: 'init'
-                  backendServiceArm: 'tamopstf'
-                  backendAzureRmResourceGroupName: 'tamopstf'
-                  backendAzureRmStorageAccountName: 'tamopstf'
-                  backendAzureRmContainerName: 'tfstatedevops'
-                  backendAzureRmKey: 'terraform.tfstate'
               - task: TerraformTaskV1@0
                 displayName: 'plan'
                 inputs:
                   provider: 'azurerm'
                   command: 'plan'
-                  environmentServiceNameAzureRM: 'tamopstf'
-              - task: TerraformTaskV1@0
-                displayName: 'apply'
-                inputs:
-                  provider: 'azurerm'
-                  command: 'apply'
-                  environmentServiceNameAzureRM: 'tamopstf'
+
