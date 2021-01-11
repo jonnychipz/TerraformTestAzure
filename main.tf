@@ -1,5 +1,4 @@
 terraform {
-  
   backend "azurerm" {
     resource_group_name   = "jonnychipz-infra"
     storage_account_name  = "jonnychipztstate"
