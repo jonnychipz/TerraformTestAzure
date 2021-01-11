@@ -26,7 +26,7 @@ echo "storage_account_name: $STORAGE_ACCOUNT_NAME"
 echo "container_name: $CONTAINER_NAME"
 echo "access_key: $ACCOUNT_KEY"
 
-# Create KeyVault to store Storage Account Access Key
+# Create KeyVault and example of storing a key
 az keyvault create --name "jonnychipzkv" --resource-group "jonnychipz-infra" --location uksouth
 az keyvault secret set --vault-name "jonnychipzkv" --name "tstateaccess" --value {$ACCOUNT_KEY}
 az keyvault secret show --vault-name "jonnychipzkv" --name "tstateaccess"
