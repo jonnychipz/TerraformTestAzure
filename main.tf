@@ -5,7 +5,7 @@ terraform {
     container_name        = "tstate"
     key                   = "+uRmL73LSnXvSEGMG9pd26R28qvgFS9z3BcZrg+NHAExrs9HkRhOjNGWxT9c"
 }
-  
+    
   required_providers {
     azurerm = {
       # Specify what version of the provider we are going to utilise
