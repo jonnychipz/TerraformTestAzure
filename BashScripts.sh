@@ -8,18 +8,19 @@ az account set --subscription "MPN - John Lunn"
 RESOURCE_GROUP_NAME=jonnychipz-infra
 STORAGE_ACCOUNT_NAME=jonnychipztstate
 CONTAINER_NAME=tstate
+STATE_FILE=terraform.state
 
 # Create resource group
 az group create --name $RESOURCE_GROUP_NAME --location uksouth
 
 # Create storage account
-az storage account create --resource-group $STORAGE_ACCOUNT_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
+az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
 
 # Get storage account key
 ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
 
 # Create blob container
-az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key $ACCOUNT_KEY
+az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key $STATE_FILE
 
 # Show details for the purposes of this code
 echo "storage_account_name: $STORAGE_ACCOUNT_NAME"
