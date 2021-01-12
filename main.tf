@@ -1,8 +1,16 @@
 terraform {
+  backend "azurerm" {
+    resource_group_name   = "jonnychipz-infra"
+    storage_account_name  = "jonnychipztstate"
+    container_name        = "tstate"
+    key                   = "77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=="
+}
+
   required_providers {
     azurerm = {
       # Specify what version of the provider we are going to utilise
       source = "hashicorp/azurerm"
+      version = ">= 2.4.1"
     }
   }
 }
@@ -41,7 +49,7 @@ resource "azurerm_storage_account" "jonnychipzsa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   tags = {
-    environment = "jonnychipzenv1"
+    environment = "jonnychipz"
   }
 }
 # Create our vNIC for our VM and assign it to our Virtual Machines Subnet
