@@ -3,6 +3,8 @@ trigger:
 
 pool:
   name: Azure Pipelines
+  vmImage: 'vs2017-win2016'
+
 steps:
 - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
   displayName: 'Use Terraform latest'
