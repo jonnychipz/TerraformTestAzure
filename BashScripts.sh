@@ -5,8 +5,8 @@ az account set --subscription "MPN - John Lunn"
 
 
 #Set Variables for Storage account and Key Vault that support the Terraform implementation
-RESOURCE_GROUP_NAME=jonnychipz-infra
-STORAGE_ACCOUNT_NAME=jonnychipztstate
+RESOURCE_GROUP_NAME=mks-infra
+STORAGE_ACCOUNT_NAME=mkststate
 CONTAINER_NAME=tstate
 STATE_FILE="terraform.state"
 
@@ -29,6 +29,6 @@ echo "access_key: $ACCOUNT_KEY"
 echo "state_file: $STATE_FILE"
 
 # Create KeyVault and example of storing a key
-az keyvault create --name "jonnychipzkv" --resource-group "jonnychipz-infra" --location uksouth
-az keyvault secret set --vault-name "jonnychipzkv" --name "tstateaccess" --value {$ACCOUNT_KEY}
-az keyvault secret show --vault-name "jonnychipzkv" --name "tstateaccess"
+az keyvault create --name "mkskv" --resource-group "mks-infra" --location uksouth
+az keyvault secret set --vault-name "mkskv" --name "tstateaccess" --value {$ACCOUNT_KEY}
+az keyvault secret show --vault-name "mkskv" --name "tstateaccess"
