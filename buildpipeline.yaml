@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 pool:
   name: Azure Pipelines
@@ -12,9 +12,9 @@ steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : INIT'
   inputs:
-    backendServiceArm: 'Jonnychipz-TFSPN'
-    backendAzureRmResourceGroupName: 'jonnychipz-infra'
-    backendAzureRmStorageAccountName: jonnychipztstate
+    backendServiceArm: 'abdul-TFSPN'
+    backendAzureRmResourceGroupName: 'abdul-infra'
+    backendAzureRmStorageAccountName: abdultstate
     backendAzureRmContainerName: tstate
     backendAzureRmKey: '77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=='
 
@@ -22,10 +22,10 @@ steps:
   displayName: 'Terraform : PLAN'
   inputs:
     command: plan
-    environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
+    environmentServiceNameAzureRM: 'abdul-TFSPN'
 
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : VAL & APPLY'
   inputs:
     command: apply
-    environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
+    environmentServiceNameAzureRM: 'abdul-TFSPN'
