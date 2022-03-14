@@ -2,12 +2,12 @@
 az login
 
 # if you have multiple subscriptions then select the one you want to use
-az account set -s "MPN - John Lunn"
+az account set -s "Azure subscription 1"
 
 
 
-$env:RESOURCE_GROUP_NAME = 'jonnychipz-state'
-$env:STORAGE_ACCOUNT_NAME = 'jonnychipztfstate'
+$env:RESOURCE_GROUP_NAME = 'abdul-state'
+$env:STORAGE_ACCOUNT_NAME = 'abdultfstate'
 $env:CONTAINER_NAME = 'tstate'
 # Create resource group
 az group create --name $env:RESOURCE_GROUP_NAME --location uksouth
