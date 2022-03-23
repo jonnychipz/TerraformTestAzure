@@ -1,7 +1,7 @@
 #!/bin/bash
 #COnnect and set Subscription Context in Azure
 az login
-az account set --subscription "MPN - John Lunn"
+az account set --subscription "Visual Studio Professional with MSDN"
 
 
 #Set Variables for Storage account and Key Vault that support the Terraform implementation
