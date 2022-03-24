@@ -83,6 +83,13 @@ resource "azurerm_virtual_machine" "mksvm01" {
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
+  storage_data_disk {
+     name              = "datadisk_new_${count.index}"
+     managed_disk_type = "Standard_LRS"
+     create_option     = "Empty"
+     lun               = 0
+     disk_size_gb      = "1023"
+   }
   os_profile {
     computer_name  = "mksvm01"
     admin_username = "mks"
