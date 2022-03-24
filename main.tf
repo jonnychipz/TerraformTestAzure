@@ -84,7 +84,7 @@ resource "azurerm_virtual_machine" "mksvm01" {
     managed_disk_type = "Standard_LRS"
   }
   storage_data_disk {
-     name              = "datadisk_new_${count.index}"
+     name              = "datadisk_new"
      managed_disk_type = "Standard_LRS"
      create_option     = "Empty"
      lun               = 0
