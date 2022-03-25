@@ -52,6 +52,13 @@ resource "azurerm_storage_account" "mkssa" {
     environment = "mksenv1"
   }
 }
+# Public IP Creation
+resource "azurerm_public_ip" "public_ip" {
+  name                = "vm_public_ip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  allocation_method   = "Dynamic"
+}
 # Create our vNIC for our VM and assign it to our Virtual Machines Subnet
 resource "azurerm_network_interface" "vmnic" {
   name                = "mksvm01nic"
@@ -62,6 +69,7 @@ resource "azurerm_network_interface" "vmnic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.sn.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 }
 # Create our Virtual Machine - mks-VM01
@@ -84,12 +92,12 @@ resource "azurerm_virtual_machine" "mksvm01" {
     managed_disk_type = "Standard_LRS"
   }
   storage_data_disk {
-     name              = "datadisk_new"
-     managed_disk_type = "Standard_LRS"
-     create_option     = "Empty"
-     lun               = 0
-     disk_size_gb      = "1023"
-   }
+    name              = "datadisk_new"
+    managed_disk_type = "Standard_LRS"
+    create_option     = "Empty"
+    lun               = 0
+    disk_size_gb      = "1023"
+  }
   os_profile {
     computer_name  = "mksvm01"
     admin_username = "mks"
