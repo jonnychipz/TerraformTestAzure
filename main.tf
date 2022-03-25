@@ -74,7 +74,7 @@ resource "azurerm_virtual_machine" "mksvm01" {
   storage_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2016-Datacenter-Server-Core-smalldisk"
+    sku       = "2016-Datacenter"
     version   = "latest"
   }
   storage_os_disk {
